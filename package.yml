@@ -1,0 +1,24 @@
+- hosts: all
+  become: true
+  vars:
+    pkgs:
+      - php
+      - mariadb
+  tasks:
+  - name: "downloading packages"
+    package: 
+        name: "{{item}}"  
+        state: present
+    loop: "{{pkgs}}"
+    when: inventory_hostname in groups['dev'] or inventory_hostname in groups['prod']
+
+
+  - package:
+       name: "@RPM Development Tools"
+       state: present
+    when: inventory_hostname in groups['dev']
+
+  - package:
+       name: "*"
+       state: latest
+    when: inventory_hostname in groups['dev']  

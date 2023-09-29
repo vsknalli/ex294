@@ -1,0 +1,11 @@
+- hosts: dev
+  become: True
+  tasks:
+  - package:
+       name: "httpd"
+       state: present 
+
+  - service: 
+      name: "httpd"
+      enabled: yes
+      state: started

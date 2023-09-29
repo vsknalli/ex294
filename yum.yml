@@ -1,0 +1,17 @@
+- hosts: all
+  become: True
+  tasks:
+  - ansible.builtin.yum_repository:
+      name: "baseos"
+      baseurl: "file:///dvd/Baseos" 
+      description: "EX294-Base OS Repo"
+      state: absent
+  
+  - ansible.builtin.yum_repository:
+      name: "appstream"
+      baseurl: "file//dvd/AppStream" 
+      description: "EX294-Appstream Repo"
+      state: absent
+
+
+
